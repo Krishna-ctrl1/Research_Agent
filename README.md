@@ -1,35 +1,49 @@
-Autonomous AI Research Agent
-An autonomous AI agent built with LangChain, LangGraph, and Ollama. This project receives a research topic, autonomously creates a plan, searches the web, and writes a comprehensive report. The entire agent is served via a production-ready FastAPI backend, containerized with Docker, and configured for automated deployment to AWS.
+# 🤖 Autonomous AI Research Agent
 
-🚀 Key Features
-Autonomous Multi-Step Research: The agent can plan, search, critique, and write without human intervention.
+An **autonomous AI research assistant** built with **LangChain**, **LangGraph**, and **Ollama**.  
+This project takes a research topic, autonomously **creates a plan**, **searches the web**, and **writes a comprehensive report**.  
+The entire system is served via a **production-ready FastAPI backend**, **containerized with Docker**, and configured for **automated deployment to AWS**.
 
-Stateful Agentic Workflow: Built using LangGraph to enable complex, cyclical workflows for tasks like self-correction and planning.
+---
 
-Powered by Local LLMs: Natively integrated with Ollama to run powerful open-source models like Llama 3 directly on your machine.
+## 🚀 Key Features
 
-Production-Ready API: A robust and scalable API built with FastAPI, including automatic interactive documentation.
+- **🧠 Autonomous Multi-Step Research:**  
+  The agent plans, searches, critiques, and writes — fully autonomously.
 
-Containerized & Portable: Comes with a Dockerfile to ensure a consistent and reproducible environment anywhere.
+- **🔁 Stateful Agentic Workflow:**  
+  Built using **LangGraph** for complex, cyclical task workflows (planning, self-correction, evaluation).
 
-MLOps Ready: Includes a CI/CD pipeline definition using GitHub Actions for automated building and deployment to AWS App Runner.
+- **⚡ Powered by Local LLMs:**  
+  Natively integrates with **Ollama** to run open-source models like **Llama 3** directly on your local machine.
 
-🛠️ Tech Stack
-AI Frameworks: LangChain, LangGraph
+- **🧩 Production-Ready API:**  
+  Robust and scalable backend built using **FastAPI**, with automatic interactive documentation.
 
-LLM Backend: Ollama (Llama 3)
+- **🐳 Containerized & Portable:**  
+  Pre-configured **Dockerfile** ensures consistent and reproducible environments.
 
-API Framework: FastAPI
+- **🚢 MLOps Ready:**  
+  Includes **GitHub Actions CI/CD pipeline** for automated build and deployment to **AWS App Runner**.
 
-Tools: DuckDuckGo Search
+---
 
-Containerization: Docker
+## 🛠️ Tech Stack
 
-CI/CD & Deployment: GitHub Actions, AWS ECR, AWS App Runner
+| Component | Technology |
+|------------|-------------|
+| **AI Frameworks** | LangChain, LangGraph |
+| **LLM Backend** | Ollama (Llama 3) |
+| **API Framework** | FastAPI |
+| **Search Tool** | DuckDuckGo Search |
+| **Containerization** | Docker |
+| **CI/CD & Deployment** | GitHub Actions, AWS ECR, AWS App Runner |
 
-🏗️ Project Architecture
-This project uses a decoupled architecture where the agent logic is served via an API.
+---
 
+## 🏗️ Project Architecture
+
+```text
 +----------------+      +---------------------+      +---------------------+      +----------------------+
 | User / Client  |----->|   FastAPI Backend   |----->|  LangGraph Agent    |----->|  DuckDuckGo Search   |
 | (e.g., Browser)|      | (api.py)            |      |  (agent.py)         |      |  (Tool)              |
@@ -40,79 +54,129 @@ This project uses a decoupled architecture where the agent logic is served via a
                                                        | Ollama (Llama 3)  |
                                                        | (Local LLM)       |
                                                        +-------------------+
+```
 
-⚙️ Local Setup and Installation
-Follow these steps to get the project running on your local machine.
+## ⚙️ Local Setup and Installation
 
-1. Prerequisites
-Python 3.11+
+### 1️⃣ Prerequisites
+Make sure you have the following installed:
 
-Git
+- **Python 3.11+**  
+- **Git**  
+- **Ollama**  
+- **Docker Desktop**
 
-Ollama
+---
 
-Docker Desktop (for containerization)
-
-2. Clone the Repository
-git clone [https://github.com/Krishna-ctrl1/Research_Agent.git](https://github.com/Krishna-ctrl1/Research_Agent.git)
+### 2️⃣ Clone the Repository
+```bash
+git clone https://github.com/Krishna-ctrl1/Research_Agent.git
 cd Research_Agent
+```
 
-3. Set Up Ollama
-Once Ollama is installed and running, pull the Llama 3 model.
+### 3️⃣ Set Up Ollama
 
+Once Ollama is installed and running, pull the **Llama 3** model:
+
+```bash
 ollama pull llama3
+```
 
-4. Configure Environment Variables
-Create a file named .env in the project root and add your LangSmith API key for tracing.
+### 4️⃣ Configure Environment Variables
 
+Create a .env file in the project root:
+```bash
 # .env file
 
 # Get these from your LangSmith account settings
 LANGCHAIN_TRACING_V2="true"
 LANGCHAIN_API_KEY="PASTE_YOUR_LANGSMITH_API_KEY_HERE"
+```
 
-5. Install Dependencies
-Install all the required Python packages.
-
+### 5️⃣ Install Dependencies
+```bash
 python -m pip install -r requirements.txt
+```
 
-▶️ Running the Application
-Local Development Server
-This is the easiest way to run the application for development.
+## ▶️ Running the Application
 
+### 🧩 Local Development Server
+
+Run the application locally using the following command:
+
+```bash
 python main.py
+```
+**Once started, the API will be available at:**
+**👉 http://127.0.0.1:8000**
 
-The API server will be available at http://127.0.0.1:8000.
 
-Testing the API
-Once the server is running, you can test the agent by navigating to the interactive documentation in your browser:
+## 🧪 Test the API
 
-URL: http://127.0.0.1:8000/docs
+Visit the interactive documentation:  
+👉 [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
 
-Expand the POST /research endpoint.
+### Steps:
+1. Expand the **POST /research** endpoint  
+2. Click **“Try it out”**  
+3. Enter your research topic  
+4. Click **“Execute”**  
 
-Click "Try it out", enter your topic in the request body, and click "Execute".
+## 🐳 Docker Usage
 
-🐳 Docker Usage
-You can also build and run the entire application as a Docker container.
+### Build the Docker Image
+Build the Docker image using the following command:  
+`docker build -t research-agent-api .`
 
-Build the Docker Image
-docker build -t research-agent-api .
+### Run the Docker Container
+Run the container with:  
+`docker run -p 8000:8000 --env-file .env research-agent-api`
 
-Run the Docker Container
-docker run -p 8000:8000 --env-file .env research-agent-api
+The API will be available at:  
+👉 [http://127.0.0.1:8000](http://127.0.0.1:8000)
 
-The API will be accessible at the same address: http://127.0.0.1:8000.
+---
 
-🚀 MLOps and Deployment
-This project is configured with a CI/CD pipeline for automated deployments to AWS App Runner.
+## 🚀 MLOps & Deployment (AWS)
 
-The workflow is defined in .github/workflows/deploy.yml and performs the following steps on every push to the main branch:
+This project includes a **CI/CD pipeline** configured for automated deployments using **GitHub Actions** and **AWS App Runner**.
 
-Configure AWS Credentials: Securely logs into AWS using secrets stored in GitHub.
+The workflow file is located at:  
+`.github/workflows/deploy.yml`
 
-Login to ECR: Authenticates Docker with Amazon Elastic Container Registry.
+### 🔄 CI/CD Workflow Steps
 
-Build & Push Image: Builds a new Docker image and pushes it to the ECR repository.
+1. **Configure AWS Credentials:**  
+   Authenticates using GitHub Secrets.
 
-Automatic Deployment: AWS App Runner is configured to automatically detect the new image in ECR and deploy the update to the live service.
+2. **Login to ECR:**  
+   Authenticates Docker with Amazon Elastic Container Registry (ECR).
+
+3. **Build & Push Image:**  
+   Builds and pushes the new Docker image to AWS ECR.
+
+4. **Automatic Deployment:**  
+   AWS App Runner automatically detects the new image and deploys it to the live environment.
+
+---
+
+## 🧠 Future Enhancements
+
+- Add support for **multi-agent collaboration**  
+- Integrate **vector databases** (e.g., Chroma, FAISS) for memory  
+- Extend **report export formats** (PDF, DOCX)  
+- Introduce a **voice interaction module**
+
+---
+
+## 📜 License
+
+This project is licensed under the **MIT License** — feel free to use and modify it.
+
+---
+
+## 💡 Author
+
+**Krishna Gupta**  
+📧 [krishna.gpt607@gmail.com](mailto:krishna.gpt607@gmail.com)  
+🌐 [GitHub: Krishna-ctrl1](https://github.com/Krishna-ctrl1)
