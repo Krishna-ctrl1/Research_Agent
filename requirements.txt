@@ -1,0 +1,9 @@
+langchain
+langgraph
+langchain-community 
+langchain-ollama 
+duckduckgo-search
+fastapi
+uvicorn[standard]
+gunicorn
+python-dotenv
