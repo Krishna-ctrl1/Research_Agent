@@ -174,9 +174,3 @@ The workflow file is located at:
 This project is licensed under the **MIT License** — feel free to use and modify it.
 
 ---
-
-## 💡 Author
-
-**Krishna Gupta**  
-📧 [krishna.gpt607@gmail.com](mailto:krishna.gpt607@gmail.com)  
-🌐 [GitHub: Krishna-ctrl1](https://github.com/Krishna-ctrl1)
